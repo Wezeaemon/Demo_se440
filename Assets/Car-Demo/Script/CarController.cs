@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+ //[RequireComponent(typeof(ParticleSystem))]
 public class CarController : MonoBehaviour
 {
     [SerializeField] private float Speed;
@@ -15,10 +16,15 @@ public class CarController : MonoBehaviour
     [SerializeField] private float SpeedRotattion;
     [SerializeField] CharacterController controller;
     [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem ps;
+    [SerializeField] ParticleSystem ps1;
+   
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+         ParticleSystem ps = GetComponent<ParticleSystem>();
+         ParticleSystem ps1 = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -36,11 +42,16 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
+         // ParticleSystem.emission.enabled = true;
+         ps.Play();
+         ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.A))
        {
          animator.SetTrigger("Idea");
          animator.SetTrigger("Run");
+         ps.Stop();
+          ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.D))
        {
@@ -48,11 +59,15 @@ public class CarController : MonoBehaviour
           RightTransformCar.Rotate(0, SpeedRotattionCar * Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
+            ps.Play();
+             ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.D))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+          ps.Stop();
+          ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.LeftArrow))
        {
@@ -60,11 +75,15 @@ public class CarController : MonoBehaviour
            LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
            animator.SetTrigger("Run");
            animator.ResetTrigger("Idea");
+           ps.Play();
+           ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.LeftArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+          ps.Stop();
+           ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.RightArrow))
        {
@@ -72,11 +91,15 @@ public class CarController : MonoBehaviour
          RightTransformCar.Rotate(0, SpeedRotattionCar * Time.deltaTime, 0);
          animator.SetTrigger("Run");
          animator.ResetTrigger("Idea");
+         ps.Play();
+         ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.RightArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+          ps.Stop();
+          ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.W))
        {
@@ -84,11 +107,15 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
+          ps.Play();
+           ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.W))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+         ps.Stop();
+          ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.S))
        {
@@ -96,11 +123,15 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
+           ps.Play();
+           ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.S))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+         ps.Stop();
+         ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.UpArrow))
        {
@@ -108,11 +139,15 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
+           ps.Play();
+            ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.UpArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+          ps.Stop();
+           ps1.Stop();
        }
        else if(Input.GetKey(KeyCode.DownArrow))
        {
@@ -120,11 +155,15 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
+          ps.Play();
+           ps1.Play();
        }
        else if(Input.GetKeyUp(KeyCode.DownArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
+         ps.Stop();
+          ps1.Stop();
        }
     }
 }
