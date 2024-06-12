@@ -12,19 +12,25 @@ public class CarController : MonoBehaviour
     [SerializeField] Transform RightTransform;
     [SerializeField] Transform LeftTransformCar;
     [SerializeField] Transform RightTransformCar;
-    [SerializeField] private float SpeedRotattionCar;
-    [SerializeField] private float SpeedRotattion;
+    [SerializeField] private float SpeedRotationCar;
+    [SerializeField] private float SpeedRotation;
     [SerializeField] CharacterController controller;
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem ps;
     [SerializeField] ParticleSystem ps1;
+    [SerializeField] private float MaxSpeed;
+    [SerializeField] private float Delta;
+    [SerializeField] private float MaxSpeedNow;
    
     // Start is called before the first frame update
     void Start()
     {
+       Cursor.lockState = CursorLockMode.Locked;
         animator = gameObject.GetComponent<Animator>();
          ParticleSystem ps = GetComponent<ParticleSystem>();
          ParticleSystem ps1 = GetComponent<ParticleSystem>();
+
+        
     }
 
     // Update is called once per frame
@@ -39,7 +45,7 @@ public class CarController : MonoBehaviour
        if(Input.GetKey(KeyCode.A))
        {
           //LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
-          LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
+          LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
          // ParticleSystem.emission.enabled = true;
@@ -56,7 +62,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.D))
        {
           //RightTransform.Rotate(0, SpeedRotattion * Time.deltaTime, 0);
-          RightTransformCar.Rotate(0, SpeedRotattionCar * Time.deltaTime, 0);
+          RightTransformCar.Rotate(0, SpeedRotationCar * Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
             ps.Play();
@@ -72,7 +78,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.LeftArrow))
        {
          /// LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
-           LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
+           LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
            animator.SetTrigger("Run");
            animator.ResetTrigger("Idea");
            ps.Play();
@@ -88,7 +94,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.RightArrow))
        {
          //RightTransform.Rotate(0, SpeedRotattion * Time.deltaTime, 0);
-         RightTransformCar.Rotate(0, SpeedRotattionCar * Time.deltaTime, 0);
+         RightTransformCar.Rotate(0, SpeedRotationCar * Time.deltaTime, 0);
          animator.SetTrigger("Run");
          animator.ResetTrigger("Idea");
          ps.Play();
@@ -104,7 +110,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.W))
        {
           //LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
-          LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
+          LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
           ps.Play();
@@ -120,7 +126,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.S))
        {
           //LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
-          LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
+          LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
            ps.Play();
@@ -136,7 +142,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.UpArrow))
        {
           //LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
-          LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
+          LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
            ps.Play();
@@ -152,7 +158,7 @@ public class CarController : MonoBehaviour
        else if(Input.GetKey(KeyCode.DownArrow))
        {
           //LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
-          LeftTransformCar.Rotate(0, SpeedRotattionCar * -Time.deltaTime, 0);
+          LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
           ps.Play();
@@ -164,6 +170,23 @@ public class CarController : MonoBehaviour
          animator.ResetTrigger("Run");
          ps.Stop();
           ps1.Stop();
+       }
+        AddSpeed();
+       Invoke(nameof(AddSpeedF), MaxSpeedNow);
+    }
+    private void AddSpeedF()
+    {
+       if(Input.GetKeyDown(KeyCode.F))
+       {  
+         Speed = 20;
+       }
+       
+    }
+    private void AddSpeed()
+    {
+       if(Speed > MaxSpeed)
+       {
+         Speed -= Delta * Time.deltaTime;
        }
     }
 }
