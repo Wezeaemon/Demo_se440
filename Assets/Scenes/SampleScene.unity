@@ -1773,9 +1773,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3753090591510698119}
+  - {fileID: 3753090591235876739}
   - {fileID: 7551018211177803981}
   - {fileID: 7551018210272461323}
-  - {fileID: 3753090591235876739}
   m_Father: {fileID: 769585933585266636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651917547633860571
@@ -1834,11 +1834,12 @@ MonoBehaviour:
   SpeedRotation: 50
   controller: {fileID: 769585933585266638}
   animator: {fileID: 769585933585266639}
-  ps: {fileID: 3753090591249925895}
-  ps1: {fileID: 3753090591510780098}
   MaxSpeed: 10
   Delta: 1
   MaxSpeedNow: 3
+  Wheels:
+  - ps: {fileID: 3753090591510780098}
+  - ps: {fileID: 3753090591249925895}
 --- !u!143 &769585933585266638
 CharacterController:
   m_ObjectHideFlags: 0

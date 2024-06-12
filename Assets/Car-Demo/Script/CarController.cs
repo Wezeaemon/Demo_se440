@@ -16,23 +16,29 @@ public class CarController : MonoBehaviour
     [SerializeField] private float SpeedRotation;
     [SerializeField] CharacterController controller;
     [SerializeField] Animator animator;
-    [SerializeField] ParticleSystem ps;
-    [SerializeField] ParticleSystem ps1;
+    
     [SerializeField] private float MaxSpeed;
     [SerializeField] private float Delta;
     [SerializeField] private float MaxSpeedNow;
-   
+    [System.Serializable]
+    public struct Wheel
+    {
+        public ParticleSystem ps;
+    
+    }
+    [SerializeField]
+    private List<Wheel> Wheels = new List<Wheel>();
     // Start is called before the first frame update
     void Start()
     {
        Cursor.lockState = CursorLockMode.Locked;
         animator = gameObject.GetComponent<Animator>();
-         ParticleSystem ps = GetComponent<ParticleSystem>();
-         ParticleSystem ps1 = GetComponent<ParticleSystem>();
+       
+        
 
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -49,15 +55,15 @@ public class CarController : MonoBehaviour
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
          // ParticleSystem.emission.enabled = true;
-         ps.Play();
-         ps1.Play();
+          PlayFx(true);
+        
        }
        else if(Input.GetKeyUp(KeyCode.A))
        {
          animator.SetTrigger("Idea");
-         animator.SetTrigger("Run");
-         ps.Stop();
-          ps1.Stop();
+         animator.ResetTrigger("Run");
+          PlayFx(false);
+  
        }
        else if(Input.GetKey(KeyCode.D))
        {
@@ -65,15 +71,13 @@ public class CarController : MonoBehaviour
           RightTransformCar.Rotate(0, SpeedRotationCar * Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
-            ps.Play();
-             ps1.Play();
+          PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.D))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-          ps.Stop();
-          ps1.Stop();
+         PlayFx(false);
        }
        else if(Input.GetKey(KeyCode.LeftArrow))
        {
@@ -81,15 +85,13 @@ public class CarController : MonoBehaviour
            LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
            animator.SetTrigger("Run");
            animator.ResetTrigger("Idea");
-           ps.Play();
-           ps1.Play();
+           PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.LeftArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-          ps.Stop();
-           ps1.Stop();
+         PlayFx(false);
        }
        else if(Input.GetKey(KeyCode.RightArrow))
        {
@@ -97,15 +99,13 @@ public class CarController : MonoBehaviour
          RightTransformCar.Rotate(0, SpeedRotationCar * Time.deltaTime, 0);
          animator.SetTrigger("Run");
          animator.ResetTrigger("Idea");
-         ps.Play();
-         ps1.Play();
+         PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.RightArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-          ps.Stop();
-          ps1.Stop();
+         PlayFx(false);
        }
        else if(Input.GetKey(KeyCode.W))
        {
@@ -113,15 +113,13 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
-          ps.Play();
-           ps1.Play();
+          PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.W))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-         ps.Stop();
-          ps1.Stop();
+         PlayFx(false);
        }
        else if(Input.GetKey(KeyCode.S))
        {
@@ -129,15 +127,13 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
-           ps.Play();
-           ps1.Play();
+          PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.S))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-         ps.Stop();
-         ps1.Stop();
+         PlayFx(false);
        }
        else if(Input.GetKey(KeyCode.UpArrow))
        {
@@ -145,15 +141,13 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
-           ps.Play();
-            ps1.Play();
+           PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.UpArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-          ps.Stop();
-           ps1.Stop();
+         PlayFx(false);
        }
        else if(Input.GetKey(KeyCode.DownArrow))
        {
@@ -161,15 +155,13 @@ public class CarController : MonoBehaviour
           LeftTransformCar.Rotate(0, SpeedRotationCar * -Time.deltaTime, 0);
           animator.SetTrigger("Run");
           animator.ResetTrigger("Idea");
-          ps.Play();
-           ps1.Play();
+          PlayFx(true);
        }
        else if(Input.GetKeyUp(KeyCode.DownArrow))
        {
          animator.SetTrigger("Idea");
          animator.ResetTrigger("Run");
-         ps.Stop();
-          ps1.Stop();
+         PlayFx(false);
        }
         AddSpeed();
        Invoke(nameof(AddSpeedF), MaxSpeedNow);
@@ -187,6 +179,20 @@ public class CarController : MonoBehaviour
        if(Speed > MaxSpeed)
        {
          Speed -= Delta * Time.deltaTime;
+       }
+    }
+    private void PlayFx(bool isPlay)
+    {
+       foreach(var Wheel in Wheels )
+       {
+         if(isPlay)
+         {
+           Wheel.ps.Play();
+         }
+         else
+         {
+           Wheel.ps.Stop();
+         }
        }
     }
 }
