@@ -14,26 +14,30 @@ public class CarController : MonoBehaviour
     [SerializeField] Transform RightTransformCar;
     [SerializeField] private float SpeedRotationCar;
     [SerializeField] private float SpeedRotation;
-    [SerializeField] CharacterController controller;
     [SerializeField] Animator animator;
     
     [SerializeField] private float MaxSpeed;
     [SerializeField] private float Delta;
     [SerializeField] private float MaxSpeedNow;
+    private float Current;
+    [SerializeField] private float CurrentInvoke;
+    [SerializeField] private float MaxCurrent;
     [System.Serializable]
     public struct Wheel
     {
         public ParticleSystem ps;
+        public CharacterController Controller;
     
     }
     [SerializeField]
     private List<Wheel> Wheels = new List<Wheel>();
+  //  private List<Wheel1> Wheels1 = new List<Wheel1>();
     // Start is called before the first frame update
     void Start()
     {
        Cursor.lockState = CursorLockMode.Locked;
         animator = gameObject.GetComponent<Animator>();
-       
+       Current = MaxCurrent;
         
 
         
@@ -46,8 +50,11 @@ public class CarController : MonoBehaviour
        float MoveZ = Input.GetAxis("Vertical");
        Vector3 move =  transform.forward * MoveZ;
        VeGravity.y += Gravity * Time.deltaTime;
-       controller.Move(VeGravity * Time.deltaTime);
-       controller.Move(Speed * move * Time.deltaTime);
+       foreach(var Wheel in Wheels)
+       {
+        Wheel.Controller.Move(VeGravity * Time.deltaTime);
+        Wheel.Controller.Move(Speed * move * Time.deltaTime);
+       }
        if(Input.GetKey(KeyCode.A))
        {
           //LeftTransform.Rotate(0, SpeedRotattion * -Time.deltaTime, 0);
@@ -164,13 +171,13 @@ public class CarController : MonoBehaviour
          PlayFx(false);
        }
         AddSpeed();
-       Invoke(nameof(AddSpeedF), MaxSpeedNow);
+      Invoke(nameof(AddSpeedF), CurrentInvoke);
     }
     private void AddSpeedF()
     {
        if(Input.GetKeyDown(KeyCode.F))
        {  
-         Speed = 20;
+         AddTime();
        }
        
     }
@@ -180,6 +187,15 @@ public class CarController : MonoBehaviour
        {
          Speed -= Delta * Time.deltaTime;
        }
+    }
+    public void AddTime()
+    {
+      if(Time.time >= Current )
+      {
+        Speed = 20;
+        Current = Time.time + 2/ MaxCurrent; 
+      }
+
     }
     private void PlayFx(bool isPlay)
     {
