@@ -10,6 +10,8 @@ public class DestroyExplosionCube : MonoBehaviour
     [SerializeField] private float Force = 200;
     [SerializeField] private float RemainingTime = 0.3f;
      [SerializeField] private float RemainingDelete;
+     [SerializeField] Transform Target;
+     [SerializeField] GameObject Egges;
     void Start()
     {
        Application.targetFrameRate = 60;
@@ -50,6 +52,7 @@ public class DestroyExplosionCube : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             Invoke(nameof(Main), RemainingTime);
+            GameObject SpawnEgges = Instantiate(Egges, Target.position, Quaternion.identity);
             Application.targetFrameRate = 60;
         }
     }

@@ -211,4 +211,9 @@ public class CarController : MonoBehaviour
          }
        }
     }
+    
+   private void Return(GameObject Obj)
+    {
+        ObjectPool.Instance.ReturnOne(Obj);
+    }
 }
