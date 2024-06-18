@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float MouseX = Input.GetAxis("Mouse X") * Speed * Time.deltaTime;
+        float MouseX = Input.GetAxis("Mouse X") * Speed * Time.deltaTime; //FollowCamera
         float MouseY = Input.GetAxis("Mouse Y") * Speed * Time.deltaTime;
         XRotation -= MouseY;
         XRotation = Mathf.Clamp(XRotation, -50f, 50f);
