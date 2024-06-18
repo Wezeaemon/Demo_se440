@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnObstacle : MonoBehaviour
 {
-    [SerializeField] private float spawnInterval = 1f;
+    [SerializeField] private float spawnInterval = 1f; // SpawnObstace : đẻ đối tượng.
     private float _timer;
     
         // Start is called before the first frame update
