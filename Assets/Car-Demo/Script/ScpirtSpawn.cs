@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScpirtSpawn : MonoBehaviour
 {
     [SerializeField] 
-   private Queue <GameObject> _poolQuaueue = new Queue<GameObject>();
+   private Queue <GameObject> _poolQuaueue = new Queue<GameObject>();  //  ScriptSpawn : Code này đươc tái chế .
    [SerializeField] GameObject Egges;
    [SerializeField] private int poolSize = 10; 
    [SerializeField] private float Current;
