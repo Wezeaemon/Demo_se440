@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PointCome : MonoBehaviour
 {
-    [SerializeField] Transform[] WayPoint;
+    [SerializeField] Transform[] WayPoint; // PointCome Điểm đến
    [SerializeField] GameObject Point;
    [SerializeField] private int Speed;
    private int Direction = 1;
