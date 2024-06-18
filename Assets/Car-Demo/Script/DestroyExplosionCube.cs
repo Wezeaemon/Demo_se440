@@ -8,7 +8,7 @@ public class DestroyExplosionCube : MonoBehaviour
     [SerializeField] private float CubePerTap = 8f;
     [SerializeField] private int Radious = 200;
     [SerializeField] private float Force = 200;
-    [SerializeField] private float RemainingTime = 0.3f;
+    [SerializeField] private float RemainingTime = 0.3f; // Destroy Box Axis : Xóa trục khối X Y Z
      [SerializeField] private float RemainingDelete;
      [SerializeField] Transform Target;
      [SerializeField] GameObject Egges;
