@@ -5,7 +5,7 @@ using UnityEngine;
  //[RequireComponent(typeof(ParticleSystem))]
 public class CarController : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    [SerializeField] private float Speed; // Car này được sử dụng CharacterController và Animator 
     [SerializeField] private float Gravity;
     private Vector3 VeGravity;
     [SerializeField] Transform LeftTransform;
