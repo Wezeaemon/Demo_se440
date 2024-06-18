@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelectCamera : MonoBehaviour
 {
-    [SerializeField] private  int Select;
+    [SerializeField] private  int Select; // SelectCamera Lựa chọn Camera
     // Start is called before the first frame update
     void Start()
     {
