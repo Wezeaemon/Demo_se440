@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInterval: 1
+  _timer: 0
 --- !u!4 &502836880
 Transform:
   m_ObjectHideFlags: 0

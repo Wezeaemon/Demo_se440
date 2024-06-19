@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obj
   - ObjectPool
+  - ObjectWater
+  - ObjectLayer
   layers:
   - Default
   - TransparentFX
