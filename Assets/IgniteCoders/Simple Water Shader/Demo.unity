@@ -225,6 +225,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1236007028}
+    - targetCorrespondingSourceObject: {fileID: 1507636620937791836, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1236007029}
   m_SourcePrefab: {fileID: 100100000, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
 --- !u!4 &179106002 stripped
 Transform:
@@ -529,17 +532,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c809dc6d4b8c0245b2a186fd66fffd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  underWaterDrag: 15
-  underWaterAngularDrag: 5.99
-  airDrag: 7.02
-  airAngularDrag: 40.8
-  waterpower: 4.26
-  CoolDown: 0
-  FeetPosition:
+  floatingPoints:
   - {fileID: 84333229}
   - {fileID: 1508452004}
   - {fileID: 1335750428}
   - {fileID: 770959588}
+  underWaterDrag: 5.2
+  underWaterAngularDrag: 4.43
+  airDrag: 4.62
+  airAngularDrag: 2.5
+  floatPower: 1.62
+  waterHeight: -2.31
 --- !u!54 &625526836
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -870,6 +873,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50.000004, y: 0, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1236007029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236007025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e121162e18aa3004c97cb6cdd704a2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: -4.4
+  meshRenderer: {fileID: 1236007030}
+--- !u!23 &1236007030 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1507636620937791839, guid: 7097ba7ba649e1f41bba232312bdcbd8, type: 3}
+  m_PrefabInstance: {fileID: 179106001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335750427
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,14 +956,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c809dc6d4b8c0245b2a186fd66fffd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatingPoints: []
   underWaterDrag: 1
   underWaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 1
-  waterpower: 1
-  CoolDown: 0
-  FeetPosition:
-  - {fileID: 1445243253}
+  floatPower: 2.99
+  waterHeight: 0
 --- !u!54 &1445243249
 Rigidbody:
   m_ObjectHideFlags: 0

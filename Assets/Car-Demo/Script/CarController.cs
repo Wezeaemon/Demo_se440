@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
  //[RequireComponent(typeof(ParticleSystem))]
-public class CarController : MonoBehaviour
+public class CarController : NetworkBehaviour
 {
     [SerializeField] private float Speed; // Car này được sử dụng CharacterController và Animator 
     [SerializeField] private float Gravity;
@@ -46,6 +47,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if(! isLocalPlayer) return;
        //float MoveX = Input.GetAxis("Horizontal");
        float MoveZ = Input.GetAxis("Vertical");
        Vector3 move =  transform.forward * MoveZ;
@@ -181,6 +183,10 @@ public class CarController : MonoBehaviour
        }
        
     }
+    public void LateUpdate()
+    {
+      if(! isLocalPlayer) return;
+    }
     private void AddSpeed()
     {
        if(Speed > MaxSpeed)
@@ -216,4 +222,5 @@ public class CarController : MonoBehaviour
     {
         ObjectPool.Instance.ReturnOne(Obj);
     }
+
 }
